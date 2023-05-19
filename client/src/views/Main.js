@@ -15,7 +15,7 @@ const Main = () => {
         <div>
                 <h1>This is from the back end: {message}</h1>
                 <br/>
-                <button type="submit" className="btn btn-dark"><Link to={'/allProducts'}>Go to Dash</Link></button>
+                <Link className="btn btn-dark" to={'/allProducts'}>Go to Dash</Link>
             </div>
         )
 }

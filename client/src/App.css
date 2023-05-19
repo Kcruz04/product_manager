@@ -44,3 +44,6 @@
 .tbl{
   display: inline-block;
 }
+.width {
+  width: 50%;
+}

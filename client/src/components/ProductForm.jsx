@@ -9,11 +9,13 @@ const ProductForm = () => {
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState();
     const [description, setDescription] = useState("");
-    const [productData, setProductData] = useState({
-        title:'',
-        price:'',
-        description:''
-    })
+    // const [productData, setProductData] = useState({
+    //     title:'',
+    //     price:'',
+    //     description:''
+    // })
+    //create state for errors
+    const [errors, setErrors] = useState([])
 
     //Instanciate useNagivate
     const navigate = useNavigate()
@@ -28,16 +30,27 @@ const ProductForm = () => {
             price,
             description
         })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-        setProductData()
+        .then(res => {
+        console.log(res)
         navigate('/allProducts')
+        })
+        // setProductData()
+        .catch(err=>{
+            const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+            const errorArr = []; // Define a temp error array to push the messages in
+            for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                errorArr.push(errorResponse[key].message)
+            }
+            // Set Errors
+            setErrors(errorArr);
+        })
     }
 
 
     return (
         <div>
             <h1>Create a Product</h1>
+            {errors.map((err, index) => <p key={index} style={{color: "red"}}>{err}</p>)}
             <form onSubmit={onSubmitHandler} >
                 <div className="mb-3">
                     <div className='form'>

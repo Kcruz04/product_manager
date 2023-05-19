@@ -16,7 +16,7 @@ module.exports.createProduct = (req,res) => {
         description
     })
     .then(product => res.json(product))
-    .catch(err => res.json(err));
+    .catch(err => res.status(400).json(err));
 }
 
 //Read All
@@ -45,7 +45,8 @@ module.exports.updateProduct = (req,res) => {
     const updateProduct = req.body;
     Product.findOneAndUpdate({_id: idFromParams}, updateProduct, {new: true})
     .then(updateProduct => res.json(updateProduct))
-    .catch(err => res.json({err:'err'}));
+    // .catch(err => res.json({err:'err'}))
+    .catch(err => res.status(400).json(err));
 
 }
 

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import { useParams, Link } from 'react-router-dom'
 
+
 const OneProduct = () => {
     const [product, setProduct] = useState([])
     const {id} = useParams()
@@ -32,7 +33,7 @@ const OneProduct = () => {
     }, [id]);
 
     return (
-        <div>
+        <div className='width, mb-3' >
             <h1>Product Details</h1>
             <hr />
             <fieldset>
