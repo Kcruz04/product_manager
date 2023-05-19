@@ -6,6 +6,7 @@ import './App.css';
 import ProductForm from "./components/ProductForm";
 import Dashboard from "./components/Dashboard";
 import OneProduct from "./components/OneProduct";
+import UpdateProduct from "./components/UpdateProduct";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/create' element={<ProductForm />} />
         <Route path='/allproducts' element={<Dashboard />} />
         <Route path='/oneProduct/:id' element={<OneProduct />} />
+        <Route path='/updateProduct/:id' element={<UpdateProduct/>} />
       </Routes>
     </div>
   );

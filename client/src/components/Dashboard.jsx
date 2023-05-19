@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
     const [products, setProducts] = useState([])
+    const [deleted, setdeleted] = useState(false)
     useEffect(() => {
         axios.get('http://localhost:8000/api/allProducts')
             .then((res) => {
@@ -16,7 +17,17 @@ const Dashboard = () => {
             .catch((err) => {
                 console.log("This is the dash catch error: ", err)
             })
-    }, []);
+    }, [deleted]);
+
+    const deleteProduct = (e, id) => {
+        console.log(`This will Delete Item: ${id}`)
+        axios.delete(`http://localhost:8000/api/delete/${id}`)
+            .then(res => {
+                console.log(`${id} was deleted`)
+                setdeleted(!deleted)
+            })
+            .catch(err => {console.log("this is the delete person err:", err)});
+    }
 
     return (
         <div>
@@ -40,7 +51,7 @@ const Dashboard = () => {
                         <td>{product.price}</td>
                         <td>{product.description}</td>
                         <td><Link to={`/updateProduct/${product._id}`} className='btn btn-dark' >Edit</Link> |  
-                        <Link to={`/deleteProduct/${product._id}`} className='btn btn-danger' >Delete</Link></td>
+                        <button onClick={(e)=>{deleteProduct(e, product._id)}}  className='btn btn-danger' >Delete</button></td>
                     </tr>
                         )
                     })

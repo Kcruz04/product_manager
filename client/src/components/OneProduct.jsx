@@ -46,7 +46,7 @@ const OneProduct = () => {
                 <h4>{product.description}</h4>
                 <hr />
             </fieldset><br />
-            <p> <Link className="btn btn-outline-dark" to={'/allProducts'} >Dashboard</Link></p>
+            <p> <Link className="btn btn-dark" to={'/allProducts'} >Dashboard</Link></p>
                     
                 
         </div>

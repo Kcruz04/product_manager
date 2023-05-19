@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 
 
 const ProductForm = () => {
@@ -9,6 +9,11 @@ const ProductForm = () => {
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState();
     const [description, setDescription] = useState("");
+    const [productData, setProductData] = useState({
+        title:'',
+        price:'',
+        description:''
+    })
 
     //Instanciate useNagivate
     const navigate = useNavigate()
@@ -25,6 +30,7 @@ const ProductForm = () => {
         })
         .then(res => console.log(res))
         .catch(err => console.log(err))
+        setProductData()
         navigate('/allProducts')
     }
 
@@ -42,7 +48,7 @@ const ProductForm = () => {
                         <label >Description:</label>
                         <input className='form-control' type="text" onChange={(e)=>setDescription(e.target.value)} value={description}/>
                         <br />
-                        <button type="submit" className="btn btn-outline-dark">Add Product</button>
+                        <button type="submit" className="btn btn-dark">Add Product</button> <Link to={'/allProducts'} className="btn btn-secondary">Home</Link>
                     </div>
                     
                 </div>
